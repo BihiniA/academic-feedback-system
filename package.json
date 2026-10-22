@@ -1,0 +1,27 @@
+{
+  "name": "academic-feedback-system",
+  "version": "1.0.0",
+  "description": "An AI-powered academic feedback system designed to help academic staff generate, review, edit, and manage personalized feedback for student assignments.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "dev": "nodemon server/server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@google/genai": "^2.30.0",
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.7",
+    "express": "^5.3.0",
+    "groq-sdk": "^1.6.0",
+    "mammoth": "^1.13.0",
+    "mongoose": "^9.11.1",
+    "multer": "^2.4.0",
+    "pdf-parse": "^1.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
