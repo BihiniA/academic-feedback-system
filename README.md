@@ -34,15 +34,11 @@ Supported academic roles include Instructor, Assistant Lecturer, Lecturer, Senio
 
 ### 2.2 Academic Staff Login
 
-<<<<<<< HEAD
-Registered academic staff can log in using their email address and password. After successful authentication, they can access the academic dashboard.
-=======
 The current application allows users to access the system directly by clicking the Sign In button without entering an email address or password.
 
 After clicking Sign In, users are redirected to the academic dashboard and can access the available feedback management functions.
 
 Note: This is the current demonstration implementation. Authentication and credential verification are not required for this login flow.
->>>>>>> f0c2305e0a1201eea0914dc1a4e7a8f0a623c1e5
 
 ### 2.3 Dashboard
 
@@ -303,14 +299,6 @@ No default sample account is specified in this README.
 
 If the application provides a registration function, register an academic staff account through the application and use those credentials to log in.
 
-<<<<<<< HEAD
-If a demonstration account is provided separately for assessment, enter the approved demonstration credentials here:
-
-- **Email:** `<DEMO_EMAIL>`
-- **Password:** `<DEMO_PASSWORD>`
-
-=======
->>>>>>> f0c2305e0a1201eea0914dc1a4e7a8f0a623c1e5
 Replace these placeholders only with valid demonstration credentials. Do not publish personal passwords or production account credentials in a public repository.
 
 ## 9. Known Limitations
@@ -340,11 +328,6 @@ The project is intended to support the generation, review, editing, approval, an
 
 The available features depend on the current implementation and configuration. Verify registration, login, AI generation, database persistence, lecturer approval, and deletion before using the system in a production environment.
 
-<<<<<<< HEAD
-## 12. License
-
-Add the applicable project license here if one has been selected. If this is an academic project without a published license, specify the intended usage and distribution terms as required by the institution.
-=======
 ## 12. Application Screenshots
 
 The following screenshots demonstrate the user interface of the AI Academic Feedback System.
@@ -375,4 +358,3 @@ Displays previously created feedback records and available management actions.
 <img width="1901" height="868" alt="image" src="https://github.com/user-attachments/assets/19ec1095-385c-423d-a9cf-4bb007d83bd7" />
 
 
->>>>>>> f0c2305e0a1201eea0914dc1a4e7a8f0a623c1e5
