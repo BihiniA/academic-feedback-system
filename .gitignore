@@ -23,9 +23,13 @@ npm-debug.log*
 .vscode/
 .idea/
 .DS_Store
+<<<<<<< HEAD
 Thumbs.db
 
 node_modules/
 .env
 server/.env
 client/.env
+=======
+Thumbs.db
+>>>>>>> f0c2305e0a1201eea0914dc1a4e7a8f0a623c1e5
