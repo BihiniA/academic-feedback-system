@@ -1,4 +1,5 @@
 // services/aiService.js
+// Importing the Gemini Packages
 let GoogleGenerativeAI;
 try {
   GoogleGenerativeAI = require('@google/generative-ai').GoogleGenerativeAI;
@@ -30,14 +31,15 @@ function generateFallbackAnalysis({ module, assignmentName, studentAnswer, marki
     ],
     rubricMarks: [
       { criterion: "Implementation & Correctness", maximumMarks: 40, finalMarks: 34 },
-      { criterion: "Code Quality & Structure", maximumMarks: 30, finalMarks: 26 },
-      { criterion: "Requirement Coverage", maximumMarks: 30, finalMarks: 25 }
+      { criterion: "Code Quality & Structure", maximumMarks: 30, finalMarks: 20 },
+      { criterion: "Requirement Coverage", maximumMarks: 30, finalMarks: 22 }
     ],
     suggestedTotal: 85,
     personalizedFeedback: `Good effort on ${assignmentName || "this assignment"}. The solution addresses the primary specifications effectively with sound logic. Review the suggested improvements to enhance modularity and exception handling.`
   };
 }
 
+// analyseAssignment Function
 async function analyseAssignment({
   module,
   assignmentName,
@@ -48,6 +50,7 @@ async function analyseAssignment({
 }) {
   const apiKey = process.env.GEMINI_API_KEY;
 
+  // Checking whether Gemini is avaliable
   if (!apiKey || !GoogleGenerativeAI) {
     console.warn("No GEMINI_API_KEY found, using resilient fallback.");
     return generateFallbackAnalysis({ module, assignmentName, studentAnswer, markingRubric });
@@ -59,6 +62,7 @@ async function analyseAssignment({
   for (const modelName of modelsToTry) {
     try {
       console.log(`Calling Gemini with model: ${modelName}...`);
+      // Creating a gemini model
       const genAI = new GoogleGenerativeAI(apiKey);
       
       const model = genAI.getGenerativeModel 
@@ -70,6 +74,7 @@ async function analyseAssignment({
 
       if (!model) continue;
 
+      // Prompt Engineering
       const prompt = `You are a university academic evaluator assessing a student's assignment submission.
 Module: ${module}
 Assignment: ${assignmentName}
@@ -93,7 +98,7 @@ Evaluate strictly and return JSON strictly matching this schema:
   "suggestedTotal": 80,
   "personalizedFeedback": "string"
 }`;
-
+      // Sending the request and receiving feedback
       const result = await model.generateContent(prompt);
       const rawText = result.response.text();
       const cleanedJson = rawText.replace(/```json|```/g, '').trim();
@@ -108,7 +113,7 @@ Evaluate strictly and return JSON strictly matching this schema:
       const errStr = JSON.stringify(err?.message || err);
       console.warn(`Model ${modelName} encountered: ${err?.message || err}`);
       
-      // If 503 high demand or temporary spike, try next model in the list
+      // If 503 high demand or temporary spike, try next model in the list - validating the AI response
       if (errStr.includes('503') || errStr.includes('UNAVAILABLE') || errStr.includes('high demand')) {
         console.log(`Model ${modelName} is 503 busy. Trying next model...`);
         continue;
